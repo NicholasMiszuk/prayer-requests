@@ -17,12 +17,11 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
-    '& > *': {
+    "& > *": {
       margin: theme.spacing(1),
-      width: '25ch',
+      width: "25ch",
     },
   },
   table: {
@@ -69,11 +68,17 @@ const fakeData = [
 function BasicTextField() {
   const classes = useStyles();
 
-  return (<div style={{ display: "flex" }} className={classes.root} noValidate autoComplete="off" >
-    <TextField id="stanadrd-basic" label="Prayer" />
-    <TextField id="standard-basic" label="User" />
-    <Button color="primary" >Submit</Button>
-  </div >
+  return (
+    <div
+      style={{ display: "flex" }}
+      className={classes.root}
+      noValidate
+      autoComplete="off"
+    >
+      <TextField id="stanadrd-basic" label="Prayer" />
+      <TextField id="standard-basic" label="User" />
+      <Button color="primary">Submit</Button>
+    </div>
   );
 }
 
@@ -99,21 +104,15 @@ function MyModal() {
   return (
     <div>
       <Button onClick={handleOpen}>Make Request</Button>
-      <Modal className={classes.modal}
-        open={open}
-        onClose={handleClose}
-      >
+      <Modal className={classes.modal} open={open} onClose={handleClose}>
         {body}
-
       </Modal>
     </div>
-  )
-
+  );
 }
 
 export default function Home() {
   const s = useStyles();
-  const [openModal, setOpenModal] = useState(false);
   const [stateData, setStateData] = useState(fakeData);
 
   const tableRow = stateData.map((request) => {
@@ -126,16 +125,13 @@ export default function Home() {
   });
 
   return (
-    // this 30% marginLeft is because everytime I refresh my page I lose the justifyContent: "center"
-    <div style={{ marginTop: "10%", marginLeft: "30%" }}>
+    <div>
       <Head>
         <title>Prayer Request | Home</title>
       </Head>
       <h1>Prayers</h1>
-      <div display="flex" justifyContent="center">
-      </div>
+      <MyModal />
       <Box display="flex" justifyContent="center">
-        <MyModal />
         <TableContainer style={{ width: "50%" }} component={Paper}>
           <Table className={s.table} aria-label="simple table">
             <TableHead>
