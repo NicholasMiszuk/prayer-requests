@@ -4,10 +4,9 @@ import { makeStyles, Modal, TextField, Button } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
-    marginLeft: "30%",
     display: "flex",
-    alignItems: "center",
     justifycontent: "center",
+    alignItems: "center",
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
@@ -22,7 +21,7 @@ const AddPrayerModal = ({ open, onClose, itHasBeenSubmitted }) => {
   const [prayer, setPrayer] = useState("");
   const [user, setUser] = useState("");
 
-  
+
   const handleSubmit = () => {
     itHasBeenSubmitted(prayer, user);
   };
