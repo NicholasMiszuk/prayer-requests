@@ -1,14 +1,6 @@
 import Head from "next/head";
 import React, { useState } from "react";
-import {
-  Button,
-  makeStyles,
-  Box,
-  Modal,
-  Fade,
-  Backdrop,
-  TextField,
-} from "@material-ui/core";
+import { Button, makeStyles, Box, TextField } from "@material-ui/core";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -16,6 +8,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import AddPrayerModal from "../components/Modal/index";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -65,9 +58,8 @@ const fakeData = [
   },
 ];
 
-function MyModal() {
-  const classes = useStyles();
-  const [modalStyle] = useState();
+export default function Home() {
+  const s = useStyles();
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -77,33 +69,23 @@ function MyModal() {
   const handleClose = () => {
     setOpen(false);
   };
-
-  const modalBody = (
-    <div style={modalStyle} className={classes.paper}>
-      <div style={{ display: "flex" }} className={classes.root} noValidate>
-        <TextField id="stanadrd-basic" label="Prayer" />
-        <TextField id="standard-basic" label="User" />
-        <Button color="primary">Submit</Button>
-      </div>
-    </div>
-  );
-
-  return (
-    <div>
-      <Modal className={classes.modal} open={open} onClose={handleClose}>
-        {modalBody}
-      </Modal>
-    </div>
-  );
-}
-
-export default function Home() {
-  const s = useStyles();
   const [stateData, setStateData] = useState(fakeData);
+
+  const itHasBeenSubmitted = (prayerFromModal, userFromModal) => {
+    const lastId = stateData.length;
+    const newItem = {
+      id: lastId,
+      prayer: prayerFromModal,
+      creator: userFromModal,
+      comment: [],
+    };
+
+    setStateData([newItem, ...stateData]);
+  };
 
   const tableRow = stateData.map((request) => {
     return (
-      <TableRow>
+      <TableRow key={request.id}>
         <TableCell>{request.prayer}</TableCell>
         <TableCell>{request.creator}</TableCell>
       </TableRow>
@@ -116,12 +98,17 @@ export default function Home() {
         <title>Prayer Request | Home</title>
       </Head>
       <h1>Prayers</h1>
-      <MyModal />
+      <AddPrayerModal
+        itHasBeenSubmitted={itHasBeenSubmitted}
+        open={open}
+        onClose={handleClose}
+      />
       <Box display="flex" justifyContent="center">
         <TableContainer style={{ width: "50%" }} component={Paper}>
+          <Button onClick={handleOpen} color="primary">
+            Submit
+          </Button>
           <Table className={s.table} aria-label="simple table">
-            <Button>Make Request</Button>
-
             <TableHead>
               <TableRow>
                 <TableCell>Prayer</TableCell>
