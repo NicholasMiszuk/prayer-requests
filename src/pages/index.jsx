@@ -65,23 +65,6 @@ const fakeData = [
   },
 ];
 
-function BasicTextField() {
-  const classes = useStyles();
-
-  return (
-    <div
-      style={{ display: "flex" }}
-      className={classes.root}
-      noValidate
-      autoComplete="off"
-    >
-      <TextField id="stanadrd-basic" label="Prayer" />
-      <TextField id="standard-basic" label="User" />
-      <Button color="primary">Submit</Button>
-    </div>
-  );
-}
-
 function MyModal() {
   const classes = useStyles();
   const [modalStyle] = useState();
@@ -95,17 +78,20 @@ function MyModal() {
     setOpen(false);
   };
 
-  const body = (
+  const modalBody = (
     <div style={modalStyle} className={classes.paper}>
-      <BasicTextField />
+      <div style={{ display: "flex" }} className={classes.root} noValidate>
+        <TextField id="stanadrd-basic" label="Prayer" />
+        <TextField id="standard-basic" label="User" />
+        <Button color="primary">Submit</Button>
+      </div>
     </div>
   );
 
   return (
     <div>
-      <Button onClick={handleOpen}>Make Request</Button>
       <Modal className={classes.modal} open={open} onClose={handleClose}>
-        {body}
+        {modalBody}
       </Modal>
     </div>
   );
@@ -134,6 +120,8 @@ export default function Home() {
       <Box display="flex" justifyContent="center">
         <TableContainer style={{ width: "50%" }} component={Paper}>
           <Table className={s.table} aria-label="simple table">
+            <Button>Make Request</Button>
+
             <TableHead>
               <TableRow>
                 <TableCell>Prayer</TableCell>
