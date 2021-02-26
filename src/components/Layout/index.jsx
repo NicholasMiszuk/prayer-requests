@@ -9,6 +9,8 @@ import {
   Badge,
   MenuItem,
   Menu,
+  Link,
+  Button,
 } from "@material-ui/core/";
 
 import MenuIcon from "@material-ui/icons/Menu";
@@ -41,6 +43,8 @@ export default function Layout({ children }) {
 
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
+              <Button href="/home" variant="outlined">Home</Button>
+              <Button href="/" variant="outlined">Prayer Requests</Button>
               <IconButton color="inherit">
                 <Badge badgeContent={4} color="secondary">
                   <MailIcon />

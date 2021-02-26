@@ -20,6 +20,7 @@ const Latest = () => {
             <TableCell></TableCell>
           </TableRow>
         </TableHead>
+        <TableBody></TableBody>
       </Table>
     </TableContainer>
   );

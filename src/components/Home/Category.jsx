@@ -8,6 +8,7 @@ import {
   TableRow,
   Typography,
   Box,
+  Link,
 } from "@material-ui/core";
 import useStyles from "./styles";
 
@@ -25,9 +26,11 @@ const Category = () => {
         <TableBody>
           <TableRow style={{ borderLeft: "12px solid #76923C" }}>
             <TableCell>
-              <Typography style={{ fontWeight: 800 }} variant="h6">
-                Prayer Requests
+              <Link href="/" style={{ color: "black" }}>
+                <Typography style={{ fontWeight: 800 }} variant="h6">
+                  Prayer Requests
               </Typography>
+              </Link>
               <Typography variant="body1">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Reprehenderit harum at pariatur possimus in aut suscipit commodi
@@ -38,7 +41,7 @@ const Category = () => {
                   style={{
                     width: 10,
                     height: 10,
-                    backgroundColor: "#08c",
+                    backgroundColor: "red",
                     marginRight: 4,
                   }}
                 />

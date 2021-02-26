@@ -2,18 +2,19 @@ import Head from "next/head";
 import React, { useState } from "react";
 import { makeStyles, Modal, TextField, Button } from "@material-ui/core";
 
+
 const useStyles = makeStyles((theme) => ({
   modal: {
     display: "flex",
-    position: "absolute",
-    justifycontent: "center",
+    justifyContent: "center",
     alignItems: "center",
   },
   paper: {
+    position: "absolute",
     width: "600px",
-    height: "200px",
+    height: "250px",
     backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
+    border: "3px solid #000",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
@@ -37,6 +38,9 @@ const AddPrayerModal = ({ open, onClose, itHasBeenSubmitted }) => {
           noValidate
           autoComplete="off"
         >
+          <div style={{ borderBottom: "solid", borderColor: "grey", width: "110.5%", textAlign: "center", marginTop: "-18px", backgroundColor: "lightBlue" }}>
+            <h1 >Share a New Request!</h1>
+          </div>
           <TextField
             style={{ width: "400px", marginTop: "20px" }}
             label="Prayer"

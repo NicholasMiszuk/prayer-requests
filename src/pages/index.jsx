@@ -1,6 +1,6 @@
 import Head from "next/head";
 import React, { useState } from "react";
-import { Button, makeStyles, Box, TextField } from "@material-ui/core";
+import { Button, makeStyles, Box } from "@material-ui/core";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -20,12 +20,6 @@ const useStyles = makeStyles((theme) => ({
   table: {
     minWidth: 650,
   },
-  modal: {
-    marginLeft: "30%",
-    display: "flex",
-    alignItems: "center",
-    justifycontent: "center",
-  },
   paper: {
     backgroundColor: theme.palette.background.paper,
     border: "2px solid #000",
@@ -41,6 +35,7 @@ const fakeData = [
     prayer:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, suscipit.",
     comment: [],
+    date: "2/25/2021",
   },
   {
     id: 1,
@@ -48,6 +43,7 @@ const fakeData = [
     prayer:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, suscipit.",
     comment: [],
+    date: "2/18/2021",
   },
   {
     id: 2,
@@ -55,6 +51,7 @@ const fakeData = [
     prayer:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, suscipit.",
     comment: [],
+    date: "2/22/2021",
   },
 ];
 
@@ -88,6 +85,7 @@ export default function Home() {
       <TableRow key={request.id}>
         <TableCell>{request.prayer}</TableCell>
         <TableCell>{request.creator}</TableCell>
+        <TableCell>{request.date}</TableCell>
       </TableRow>
     );
   });
@@ -97,22 +95,23 @@ export default function Home() {
       <Head>
         <title>Prayer Request | Home</title>
       </Head>
-      <h1>Prayers</h1>
       <AddPrayerModal
         itHasBeenSubmitted={itHasBeenSubmitted}
         open={open}
         onClose={handleClose}
       />
+      <h1>Prayers</h1>
       <Box display="flex" justifyContent="center">
         <TableContainer style={{ width: "50%" }} component={Paper}>
-          <Button onClick={handleOpen} color="primary">
-            Submit
-          </Button>
+          <div style={{ display: "flex", justifyContent: "flex-end" }}><Button onClick={handleOpen} color="primary">
+            Share New Request?
+          </Button></div>
           <Table className={s.table} aria-label="simple table">
             <TableHead>
               <TableRow>
                 <TableCell>Prayer</TableCell>
                 <TableCell>User</TableCell>
+                <TableCell>Posted</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>{tableRow}</TableBody>
