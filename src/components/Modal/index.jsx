@@ -25,10 +25,10 @@ const AddPrayerModal = ({ open, onClose, itHasBeenSubmitted }) => {
   const [prayer, setPrayer] = useState("");
   const [user, setUser] = useState("");
 
-
   const handleSubmit = () => {
     itHasBeenSubmitted(prayer, user);
   };
+  
   return (
     <div style={{ width: "100px" }}>
       <Modal className={classes.modal} open={open} onClose={onClose}>
